@@ -1,6 +1,6 @@
-import Flex from './Flex';
-import Grid from './Grid';
-import LRLayout from './LRLayout';
+import Flex from './Flex/index';
+import Grid from './Grid/index';
+import LRLayout from './LRLayout/index';
 
 export {
   Flex,

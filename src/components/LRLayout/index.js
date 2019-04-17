@@ -1,5 +1,5 @@
 import React from 'react';
-import { Row, Col } from 'antd';
+import Grid from '@material-ui/core/Grid';
 
 /**
  * 用于两列的 flex 布局
@@ -9,25 +9,28 @@ import { Row, Col } from 'antd';
  */
 const LRLayout = (props) => {
   const {
-    span = [12, 12], children,
-    align = 'middle', justify = 'space-between', className, style,
+    span = [6, 6], children,
+    className, style,
     leftProps = {}, rightProps = {}, leftStyle, rightStyle,
+    ...restProps
   } = props;
   const [left, right] = [...React.Children.toArray(children)];
 
   return (
-    <Row type="flex"
-      align={align}
-      justify={justify}
+    <Grid container
+      type="flex"
       className={className} style={style}
+      {...restProps}
     >
-      <Col span={span[0]} style={leftStyle} {...leftProps}>
+      <Grid item
+        xs={span[0]} style={leftStyle} {...leftProps}>
         {left}
-      </Col>
-      <Col span={span[1]} style={rightStyle} {...rightProps}>
+      </Grid>
+      <Grid item
+        xs={span[1]} style={rightStyle} {...rightProps}>
         {right}
-      </Col>
-    </Row>
+      </Grid>
+    </Grid>
   );
 }
 export default LRLayout;

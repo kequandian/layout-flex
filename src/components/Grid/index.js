@@ -1,21 +1,29 @@
 import React from 'react';
-import { Row, Col } from 'antd';
+import { useTheme } from '@material-ui/styles';
+import Grid from '@material-ui/core/Grid';
 
-const Grid = (props) => {
+function GridLayout(props) {
+  const theme = useTheme();
   const {
-    justify = 'space-between', align = 'middle',
-    colNumber = 4,
+    col,
     children,
-    rowProps = {},
-    colProps = {},
+    ...restProps
   } = props;
+  const itemProps = {};
 
-  return <Row type="flex" justify={justify} align={align} {...rowProps}>
-    {React.Children.map(children, child => {
-      return <Col span={24 / colNumber} {...colProps}>
+  if (col !== undefined) {
+    if (typeof col === 'number' && col > 0 && col < 7 && col !== 5) {
+      itemProps.xs = 12 / col;
+    }
+  }
+
+  return <Grid container style={theme.spacing} {...restProps}>
+    {React.Children.map(children, (child) => {
+      return <Grid style={theme.itemSpacing} item {...itemProps}>
         {child}
-      </Col>
+      </Grid>
     })}
-  </Row>
+  </Grid>
 }
-export default Grid;
+
+export default GridLayout;

@@ -1,84 +1,37 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import Button from '@material-ui/core/Button';
-import Dialog from '@material-ui/core/Dialog';
-import DialogTitle from '@material-ui/core/DialogTitle';
-import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
-import DialogActions from '@material-ui/core/DialogActions';
-import Typography from '@material-ui/core/Typography';
-import { withStyles } from '@material-ui/core/styles';
-import withRoot from '../withRoot';
+import { ThemeProvider } from '@material-ui/styles';
+import DemoButton from './demoComponents/Button';
 
-import Flex from '../components/Flex';
-const { FlexItem } = Flex;
+import Grid from '../components/Grid';
 
-const styles = theme => ({
-  root: {
-    textAlign: 'center',
-    paddingTop: theme.spacing.unit * 20,
+const theme = {
+  spacing: {
+    padding: '5px',
   },
-});
+  itemSpacing: {
+    margin: '8px 0'
+  }
+};
 
 class Index extends React.Component {
-  state = {
-    open: false,
-  };
-
-  handleClose = () => {
-    this.setState({
-      open: false,
-    });
-  };
-
-  handleClick = () => {
-    this.setState({
-      open: true,
-    });
-  };
 
   render() {
-    const { classes } = this.props;
-    const { open } = this.state;
 
     return (
-      <div className={classes.root}>
-        <Dialog open={open} onClose={this.handleClose}>
-          <DialogTitle>Super Secret Password</DialogTitle>
-          <DialogContent>
-            <DialogContentText>1-2-3-4-5</DialogContentText>
-          </DialogContent>
-          <DialogActions>
-            <Button color="primary" onClick={this.handleClose}>
-              OK
-            </Button>
-          </DialogActions>
-        </Dialog>
-        <Typography variant="h4" gutterBottom>
-          Material-UI
-        </Typography>
-        <Typography variant="subtitle1" gutterBottom>
-          example project
-        </Typography>
-        <Flex>
-          <FlexItem>
-            <Button variant="contained" color="secondary" onClick={this.handleClick}>
-              Super Secret Password
-            </Button>
-          </FlexItem>
-          <FlexItem>
-            <Button variant="contained" color="secondary" onClick={this.handleClick}>
-              Super Secret Password
-            </Button>
-          </FlexItem>
-        </Flex>
+      <div>
+        <Grid col={3}>
+          <DemoButton />
+          <DemoButton text="test" />
+          <DemoButton />
+          <DemoButton />
+        </Grid>
       </div>
     );
   }
 }
-
-Index.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
-
-export default withRoot(withStyles(styles)(Index));
+const App = () => {
+  return <ThemeProvider theme={theme}>
+    <Index />
+  </ThemeProvider>
+}
+export default App;

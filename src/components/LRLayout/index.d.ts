@@ -2,8 +2,9 @@ import * as React from 'react';
 
 export interface LRLayoutProps {
   span?: Array<Number>;
-  align?: 'top' | 'middle' | 'bottom';
-  justify?: 'start' | 'end' | 'center' | 'space-around' | 'space-between';
+  alignContent?: 'stretch' | 'flex-start' | 'center' | 'flex-end' | 'space-between' | 'space-around';
+  alignItems?: 'stretch' | 'flex-start' | 'center' | 'flex-end' | 'baseline';
+  justify?: 'flex-start' | 'center' | 'flex-end' | 'stretch' | 'space-between' | 'space-around' | 'space-evenly';
   style?: React.CSSProperties;
   className?: String;
   leftProps?: Object;
