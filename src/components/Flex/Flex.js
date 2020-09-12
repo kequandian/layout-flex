@@ -11,6 +11,7 @@ const Flex = (props) => {
     align = 'center', justify = 'space-between',
     style = {}, className = '',
     children,
+    ...rest
   } = props;
   const defaultStyle = {
     ...style,
@@ -20,7 +21,7 @@ const Flex = (props) => {
   const defaultClassName = `Zele-Layout-flex ${className}`;
 
   if (auto) {
-    return <div style={autoStyle} className={defaultClassName}>
+    return <div style={autoStyle} className={defaultClassName} {...rest}>
       {React.Children.map(children, (child) => {
         return React.cloneElement(child, {
           auto,
@@ -29,7 +30,7 @@ const Flex = (props) => {
     </div>
   }
 
-  return <div style={defaultStyle} className={defaultClassName}>
+  return <div style={defaultStyle} className={defaultClassName} {...rest}>
     {children}
   </div>
 }

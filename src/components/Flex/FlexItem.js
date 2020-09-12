@@ -5,7 +5,7 @@ const autoStyle = {
   flexDirection: 'column',
 };
 
-const FlexItem = ({ auto, children, style = {}, className = '', flex = '0 1 auto' }) => {
+const FlexItem = ({ auto, children, style = {}, className = '', flex = '0 1 auto', ...rest }) => {
   const defaultStyle = {
     ...style,
     flex,
@@ -17,12 +17,13 @@ const FlexItem = ({ auto, children, style = {}, className = '', flex = '0 1 auto
       ...defaultStyle,
     }}
       className={defaultClassName}
+      {...rest}
     >
       {children}
     </div>
   }
 
-  return <div style={defaultStyle} className={defaultClassName}>
+  return <div style={defaultStyle} className={defaultClassName} {...rest}>
     {children}
   </div>
 }
